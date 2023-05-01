@@ -1,0 +1,21 @@
+name: "Python setup"
+description: "Creating environment to run given script"
+inputs:
+  pythonVersion:
+    description: "The version of Python required to run"
+    required: true
+    default: "3.11"
+  pythonScript:
+    description: "Name of the Python script to run"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.pythonVersion }}
+    - run: pip install -r requirements.txt -c constraints.txt
+      shell: bash
+    - run: python ${{pythonScript}}
+      shell: bash
