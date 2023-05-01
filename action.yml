@@ -17,5 +17,5 @@ runs:
         python-version: ${{ inputs.pythonVersion }}
     - run: pip install -r requirements.txt -c constraints.txt
       shell: bash
-    - run: python ${{pythonScript}}
+    - run: python ${{ inputs.pythonScript }}
       shell: bash
